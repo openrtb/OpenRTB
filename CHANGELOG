@@ -1,0 +1,54 @@
+
+
+This section of the CHANGELOG describes changes to the OpenRTB 2.2 SPEC.  See the openrtb-dev mailing list for discussions
+
+Oct 25, 2013 Release Candiate RC1
+  Changes:
+     http://code.google.com/p/openrtb/wiki/MobileMods
+     http://code.google.com/p/openrtb/wiki/COPPASignaling
+     http://code.google.com/p/openrtb/wiki/VideoLinearityChange
+     http://code.google.com/p/openrtb/wiki/ProposalforPrivateMarketplaceDealIDExtensions
+     http://code.google.com/p/openrtb/wiki/OpenRTBNonHumanTrafficSignaling
+
+November 20, 2013 Release Candidate RC2
+  Changes:
+    - re-did the object diagrams in Word "Shapes" (uggggg)
+    - fixed a few typos
+    - added option #3 fixed-price deals for at field values.
+    - private_auction is an integer flag
+
+Jan 17, 2014 Release Candiate RC3
+   Changes:
+    - updated the examples
+    - added link to GitHub examples repository
+    - update keywords descriptions to note inconsistencies of in-the-wild implementations  
+   
+Feb 4, 2014 Release Candidate RC4
+   Changes since RC3:
+    - Change hopepage of the project to the github repository
+         (Google Code is no longer accepting uploads)
+    - Add note on Github repository in examples section
+    - All examples various orgs provided are now in GitHub.
+    - misc typos and capitalization errors
+    - insert comment per thread "Device type phone vs tablet" in Table 6.16
+    - add optional hmax & wmax to banner object per "banner.wmin/hmin" thread
+    - add optional version header to response object
+
+Feb 4, 2014 Release Candidate RC5
+   Changes:
+    - added wadomain as optional field as list of strings in Deals object.
+    - tweaked wording of Deals wseats description to be more clear.
+    - corrected two typos from Word's obsessive auto-correction & auto-capitalization of field names. 
+
+Feb 6, 2014 Release Candidate RC6
+   Changes
+    - added video.protocols field and tweaked language of video.protocol
+
+Feb 9, 2014 Release Candidate RC7
+   Changes
+    - further tweak of video.protocol and video.protocols description
+    - promotion of video.protocols to recommended
+    - demotion of video.protocols to optional
+    - added e.g. note to the device.ifa field
+
+

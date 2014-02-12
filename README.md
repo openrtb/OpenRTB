@@ -3,6 +3,8 @@ OpenRTB
 
 The new home for documentation and issue tracking for the OpenRTB Project
 
+for general information, see http://openrtb.github.io/OpenRTB
+
 Wiki is here:  https://github.com/openrtb/OpenRTB/wiki
 Issue tracker is here: https://github.com/openrtb/OpenRTB/issues
 

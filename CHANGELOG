@@ -51,10 +51,14 @@ Feb 9, 2014 Release Candidate RC7
     - demotion of video.protocols to optional
     - added e.g. note to the device.ifa field
 
-Feb 12, 2014 Release Candidate RC7
+Feb 12, 2014 Release Candidate RC8
    Changes
     - Capitalization corrections needed for imp.Id, video.Mimes, video.Pos, video.Api, and video.Ext
     - pmp.deals declared as an "array of objects".
     - pmp.private_auction now indicates the meaning of its values in the description
     - Added section and link to the public validator developed by NextAge
+
+March 18, 2014 Release Candidate RC9
+   Changes
+    - add imp.secure flag for positive signaling of HTTPS/SSL creative assests in the bids.
 

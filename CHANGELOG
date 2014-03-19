@@ -62,3 +62,7 @@ March 18, 2014 Release Candidate RC9
    Changes
     - add imp.secure flag for positive signaling of HTTPS/SSL creative assests in the bids.
 
+March 19, 2014 Release Candidate FINAL
+   Changes
+    - Cosmetic changes to URL links broken in the conversion from Word to PDF.
+

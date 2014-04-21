@@ -66,3 +66,8 @@ March 19, 2014 Release Candidate FINAL
    Changes
     - Cosmetic changes to URL links broken in the conversion from Word to PDF.
 
+April 21, 2014
+   Changes
+   - add 'integer' as field type for h/v in bid response object.  FINAL DRAFT.
+
+

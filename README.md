@@ -1,19 +1,17 @@
-OpenRTB
+OpenRTB Spec
 =======
 
-The new home for documentation and issue tracking for the OpenRTB Project
+The home for documentation and issue tracking for OpenRTB
 
-for general information, see http://openrtb.github.io/OpenRTB
+For general information, see [openrtb.github.io/OpenRTB](http://openrtb.github.io/OpenRTB)
 
-Wiki is here:  https://github.com/openrtb/OpenRTB/wiki
-Issue tracker is here: https://github.com/openrtb/OpenRTB/issues
+To file an issue, use [GitHub Issues](https://github.com/openrtb/OpenRTB/issues).
 
-Join our mailing list here:
+OpenRTB has two mailing lists you can join:
 
-For discussions about development of the OpenRTB spec:
-https://groups.google.com/forum/#!forum/openrtb-dev
+- for discussions about **the development** of the OpenRTB spec, visit 
+[openrtb-dev](https://groups.google.com/forum/#!forum/openrtb-dev).
 
-For discussions about using OpenRTB:
-https://groups.google.com/forum/#!forum/openrtb-user
-
+- for discussions about **using** OpenRTB: visit
+[openrtb-user](https://groups.google.com/forum/#!forum/openrtb-user)
 

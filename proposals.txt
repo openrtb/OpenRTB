@@ -1,0 +1,125 @@
+
+=======  Multi Size support ==========
+
+In OpenRTB 2.32 we introduced wmin/wmax and hmin/hmax in an attempt to support one bid request for multiple sizes.
+Unfortunately it didn't solve the problem well as it does not give the bidder unambiguous directions.
+
+Problem statement:
+A seller wants to expose an impression that support multiple 'formats'. Example:
+Single impression will support [600x250] that changes shape on rollover via a well defined 
+IAB Rising stars unit or [300x250] with a fixed creative size.
+
+Using wmin/wmax & hmin/hmax allows the seller's exchange to specify the below:
+"wmin": 300
+"wmax": 600
+"w":    300
+"hmin": 250
+"hmax": 250
+"h":    250
+ 
+However these instructions to the bidder are ambiguous as a 500x250 format is technically within the constraints expressed, 
+yet not desired by the seller.  Additionally the seller wants confirmation of the format of the bid response in order to price 
+the ad placement differently based upon the bid's creative size.  Analytics and reporting on ad formats is also more difficult
+as the exchange must map the bid response back to a standard adunit size supported, also a source of ambiguity.
+
+
+The following work-arounds are known to exist to eliminate this ambiguity in OpenRTB
+- use of private extension to specify an array of w/h pairs.
+- parallel bid requests to the same bidder with different sizes
+- sequential cascaded requests to the same bidder with different sizes
+
+We propose the following approach for OpenRTB 2.3 or a subsequent draft.
+
+Request object changes
+
+Banner object
+|| Field || Scope || Type || Default || Description ||
+| w      | optional/recommended | integer | - | Width of the impression in pixels. Since some ad types are not restricted by size this field is not required, but it’s highly recommended that this information be included when possible. |
+| h      | optional/recommended |  integer | - | Height of the impression in pixels. Since some ad types are not restricted by size this field is not required, but it’s highly recommended that this information be included when possible. |
+| wmin   | optional | integer | - | Deprecated |
+| wmax   | optional | integer | - | Deprecated |
+| hmin   | optional | integer | - | Deprecated |
+| hmax   | optional | integer | - | Deprecated |
+| sizes  | optional | array of objects  | - | An array of objects representing available ad sizes and formats for bid on this impression.  If utilized it is recommended that the array contain at least one entry.  See Sizes Object for more detail. |
+
+Note that if w & h are omitted is recommended that the sizes array of objects be present and populated with at least one entry.
+
+Sizes Object
+|| Field || Scope || Type || Default || Description ||
+| w      | recommended | integer | - | Width of the ad size in pixels.  |
+| h      | recommended | integer | - | Height of the ad size in pixels. |
+| fmt    | optional    | integer | - | The format ID of the ad.  See Table X.Y below |
+
+Response Object changes
+
+Bid Object
+|| Field || Scope || Type || Default || Description ||
+| w      | recommended | integer | - | Width of the ad size in pixels.  |
+| h      | recommended | integer | - | Height of the ad size in pixels. |
+| fmt | optional | integer | - | The format ID of the ad.  See Table X.Y below |
+
+Example Request:
+
+"banner": { 
+    "sizes": [ 
+        {
+            "w": 600,
+            "h": 250,
+            "fmt: 55
+        },
+        {
+            "w": 300,
+            "h": 250,
+            "fmt:  3
+        }
+
+     ],
+    "pos": 0 
+    },
+
+An advantage of this representation is that the bidder can simply iterate on the sizes array and match the w/h/fmt with its internal list of ad formats available for bidding.
+
+As a note Google's AdX protocol provides a facility to solve this problem via an array of w & h sizes.  This has proven to work in practice yet doesn't allow the optional 'format id' to unambiguously specify that a given ad format is supported for bidding (along with all known features of that ad format).
+"w": [600,300]
+"h": [250,250]
+
+
+=======  Viewability support ==========
+
+The viewability of a given impression is now emerging an important factor to buyers and sellers of ad unit inventory for mobile, video, social and display.
+
+Impression object 
+|| Field || Scope || Type || Default || Description ||
+| viewstats | Optional | object | -  | The measured viewability statistics of associated impression.  Ideally these statistics are specific to the 'tagid' ie placement within the larger content and ad layout. See View Stats object. | 
+
+View Stats object 
+|| Field || Scope || Type || Default || Description ||
+| onesec | Optional | string | -  | The probability of the impression's placement being at least 50% in-view of the user for 1 second.  | 
+| fivesec | Optional | string | -  | The probability of the impression's placement being at least 50% in-view of the user for 5 seconds.  | 
+| cnfd | optional | float | - | The confidence interval expressed as a probability of the viewability statistics. |
+| vendor | Optional | string | -  | An optional identifier of the vendor of the viewability statistics | 
+
+Example:
+
+"imp": [
+{
+    "id": "1",
+    "banner": { 
+        "w": 728, 
+        "h": 90, 
+        "pos": 1,
+        "btype": [ 4 ], 
+        "battr": [ 14 ],
+        "api": [ 3 ] 
+    },
+    "instl": 0,
+    "bidfloor": 0.5,
+    "tagid": "agltb3B1Yi1pbmNyDQsSBFNpdGUY7fD0FAw", 
+    "viewstats": {
+        "onesec": 0.85,
+        "cnfd"  " 0.99,
+        "vendor": "XYZ.com"
+    }
+}
+
+
